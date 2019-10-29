@@ -1,0 +1,14 @@
+server:
+  port: 8700
+spring:
+  application:
+    name: kgc-springcloud-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    api-b:
+      path: /test/**
+      serviceId: kgc-springcloud-web

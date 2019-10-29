@@ -1,0 +1,25 @@
+server:
+  port: 8763
+spring:
+  application:
+    name: kgc-springcloud-web
+  datasource:
+    url: jdbc:mysql://192.168.1.143:3306/wy?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  redis:
+    host: localhost
+    port: 6379
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
+
+#负载均衡
+kgc-springcloud-service:
+  ribbon:
+    #随机策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
