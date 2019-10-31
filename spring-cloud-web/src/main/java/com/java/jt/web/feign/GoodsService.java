@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Created by jt on 2019/10/25 10:49
  */
@@ -15,13 +17,37 @@ public interface GoodsService {
     @GetMapping(value = "api/show")
     GoodsInfo show(@RequestParam(value = "goodsId") Long goodsId);
 
+    @GetMapping(value = "api/showAll")
+    List<GoodsInfo> showAll();
+
+    @GetMapping(value = "api/createExcel")
+    String createExcel();
+
+    @GetMapping(value = "api/sendMail")
+    String sendMail(@RequestParam(value = "toEmailAddr") String toEmailAddr);
+
     @Component
-    public class GoodsServiceHystrix implements GoodsService {
+    class GoodsServiceHystrix implements GoodsService {
         @Override
         public GoodsInfo show(Long goodsId) {
             GoodsInfo goodsInfo = new GoodsInfo();
             goodsInfo.setGoodsName("默认商品");
             return goodsInfo;
+        }
+
+        @Override
+        public List<GoodsInfo> showAll() {
+            return null;
+        }
+
+        @Override
+        public String createExcel() {
+            return null;
+        }
+
+        @Override
+        public String sendMail(String toEmailAddr) {
+            return "容错回调";
         }
     }
 

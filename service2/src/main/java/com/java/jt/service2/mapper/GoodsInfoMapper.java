@@ -3,6 +3,8 @@ package com.java.jt.service2.mapper;
 import com.java.jt.service2.model.GoodsInfo;
 import com.java.jt.service2.model.GoodsInfoExample;
 import java.util.List;
+
+import com.sun.xml.internal.ws.api.model.Parameter;
 import org.apache.ibatis.annotations.Param;
 
 public interface GoodsInfoMapper {

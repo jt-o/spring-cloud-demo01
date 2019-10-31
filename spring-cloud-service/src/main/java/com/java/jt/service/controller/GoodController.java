@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.concurrent.Future;
+
 /**
  * Created by jt on 2019/10/25 10:44
  */
@@ -21,4 +24,29 @@ public class GoodController {
     public GoodsInfo show(@RequestParam(value = "goodsId") Long goodsId) {
         return goodService.show(goodsId);
     }
+
+    @GetMapping(value = "/showAll")
+    public List<GoodsInfo> showAll() {
+        return goodService.getGoods();
+    }
+
+    @GetMapping(value = "/createExcel")
+    public void createExcel() {
+        goodService.createExcel();
+    }
+
+    @GetMapping(value = "/sendMail")
+    public String sendMail(@RequestParam(value = "toEmailAddr") String toEmailAddr) throws Exception {
+        Future<String> future = goodService.sendMail(toEmailAddr);
+        boolean b = true;
+        while (b) {
+            if (future.isDone()) {
+                b = false;
+                System.out.println(future.get());
+                return future.get();
+            }
+        }
+        return "还没执行完";
+    }
+
 }

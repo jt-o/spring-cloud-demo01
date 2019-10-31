@@ -8,9 +8,14 @@ spring:
     port: 6379
     password:
   datasource:
-    url: jdbc:mysql://localhost:3306/wy?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/vhr?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root
+  mail:
+    host: smtp.163.com
+    username: jt_java@163.com
+    password: zhuce123456
+    default-encoding: utf-8
 eureka:
   client:
     serviceUrl:
